@@ -123,7 +123,7 @@ async function fetchImageAsBase64(imageUrl) {
 }
 
 async function analyzeImageWithGemini({ base64, mimeType }) {
-    const apiKey = "AIzaSyCyFKXOsK8l-qbi1dunkXd--69g_d_OeKA";
+    const apiKey = "";
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const supportedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
