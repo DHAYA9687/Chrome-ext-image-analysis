@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Image Analyzer",
+  "version": "1.0",
+  "description": "Analyze images using Gemini",
+  "permissions": ["contextMenus", "scripting", "activeTab", "downloads", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Image AI"
+  }
+}
