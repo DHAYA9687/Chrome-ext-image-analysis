@@ -3,13 +3,23 @@ from flask_cors import CORS
 from mongoengine import connect, Document, StringField, DateTimeField
 from datetime import datetime
 from waitress import serve
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Get MongoDB URI and port from environment variables
+MONGO_URI = os.getenv('MONGO_URI')
+PORT = int(os.getenv('PORT'))
+
+# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
 try:
     print("Connecting to MongoDB...")
-    connect(db='image_db', host='mongodb://localhost:27017/image_db')
+    connect(db='image_db', host=MONGO_URI)
     print("MongoDB connected successfully")
 except Exception as e:
     print(f"MongoDB connection failed: {str(e)}")
@@ -87,4 +97,4 @@ def get_image():
 
 if __name__ == '__main__':
     print("Starting Flask app with Waitress...")
-    serve(app, host='0.0.0.0', port=5000)
+    serve(app, host='0.0.0.0', port=PORT)

@@ -1,3 +1,6 @@
+importScripts('config.js');
+
+console.log("Background script loaded with API_KEY:", CONFIG.API_KEY);
 // background.js
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.removeAll(() => {
@@ -123,7 +126,7 @@ async function fetchImageAsBase64(imageUrl) {
 }
 
 async function analyzeImageWithGemini({ base64, mimeType }) {
-    const apiKey = "";
+    const apiKey = CONFIG.API_KEY;
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const supportedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
@@ -171,7 +174,7 @@ async function analyzeImageWithGemini({ base64, mimeType }) {
 
         return text;
     } catch (error) {
-        console.error("Gemini API error:", error);
+        ///console.error("Gemini API error:", error);
         return `⚠️ Error analyzing image: ${error.message}`;
     }
 }
